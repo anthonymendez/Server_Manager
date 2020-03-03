@@ -30,5 +30,5 @@ class Plugin(Plugin_Adapter):
   def render_template(self):
     return self.default_template
 
-def start(name, location):
+def start_plugin(name, location):
   return Plugin(name, location)

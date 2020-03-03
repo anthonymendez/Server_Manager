@@ -1,7 +1,18 @@
-<h3>
-    {{ loaded_plugin.version() }}
-</h3>
-
 <p>
-    Plugin Debug Example!
+    Plugin Debug Example! I can also use Jinja Variables from Jinja_Adapter like so!
 </p>
+<code>
+    {{ loaded_plugin.version() }}
+</code>
+<p>
+    Wow! That was easy! What about custom functions in Jinja?
+</p>
+<code>
+    {{ loaded_plugin.timestamp_str() }}
+</code>
+<p>
+    Of course!
+</p>
+<code>
+    {{ loaded_plugin.custom_str() }}
+</code>

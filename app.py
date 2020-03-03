@@ -23,7 +23,8 @@ def import_plugins():
         pkg_location = os.path.relpath(location).replace("\\",".")
         info = importlib.import_module('.' + main_module, package=pkg_location)
         print("Adding Plugin " + i + ", " + str(location))
-        info.Plugin = info.start(i, location)
+        info.Plugin = info.start_plugin(i, location)
+        info.Jinja = info.start_jinja(info.Plugin)
         plugins.append({"name": i, "info": info})
     return plugins
 
@@ -32,16 +33,7 @@ def get_plugins_functions():
     plugin_functions_list = []
     for plugin in plugins:
         info = plugin["info"]
-        jinja_adapter = Jinja_Adapter(
-            info.Plugin.name,
-            info.Plugin.html_id,
-            info.Plugin.name_link,
-            info.Plugin.author,
-            info.Plugin.github_link,
-            info.Plugin.version,
-            info.Plugin.render_template
-        )
-        plugin_functions_list.append(jinja_adapter)
+        plugin_functions_list.append(info.Jinja)
     return plugin_functions_list
 
 def consolidate_config():
