@@ -1,5 +1,5 @@
 function test() {
-    $("body").append("Test!");
+    $("body").append("Script Test!");
 }
 
 $(document).ready(function() {
