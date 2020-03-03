@@ -32,4 +32,4 @@ I'm currently working on a HWiNFO64 remote sensor reader that extracts data from
 
 Like this!
 
-![alt text](README_imgs/website.png "Site!")
+![alt text](README_imgs/website.PNG "Site!")
