@@ -27,3 +27,9 @@ More configurability coming soon!
 Take a look at `plugin_debug_example` plugin to get an idea of what you can do with the plugin.
 
 I'm currently working on a HWiNFO64 remote sensor reader that extracts data from HWiNFO64 and displays the data on the tool.
+
+## How does it look?
+
+Like this!
+
+![alt text](README_imgs/website.png "Site!")
