@@ -1,6 +1,7 @@
 # General Imports
 import importlib
 import os
+from plugin_functions import Plugin_Functions
 
 # Specific Imports
 from flask import Flask, render_template, session
@@ -42,19 +43,20 @@ def consolidate_config():
 
 def get_plugins_functions():
     plugins = import_plugins()
-    plugin_functions = []
+    plugin_functions_list = []
     for plugin in plugins:
         info = plugin["info"]
-        function = {name: info.name}
-        functions.append(info.name)
-        functions.append(info.html_id)
-        functions.append(info.name_link)
-        functions.append(info.author)
-        functions.append(info.github_link)
-        functions.append(info.version)
-        functions.append(info.render_template)
-        plugin_functions.append(functions)
-    return plugin_functions
+        plugin_function = Plugin_Functions(
+            info.name(),
+            info.html_id(),
+            info.name_link(),
+            info.author(),
+            info.github_link(),
+            info.version(),
+            info.render_template()
+        )
+        plugin_functions_list.append(plugin_function)
+    return plugin_functions_list
 
 # Setup
 consolidate_config()

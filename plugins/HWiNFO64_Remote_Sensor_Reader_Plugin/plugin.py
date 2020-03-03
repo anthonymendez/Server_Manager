@@ -16,7 +16,7 @@ def name():
 
 def html_id():
   start()
-  return config[default]['html_id']
+  return config[default]['html id']
 
 def name_link():
   start()
