@@ -28,6 +28,10 @@ Take a look at `plugin_debug_example` plugin to get an idea of what you can do w
 
 I'm currently working on a HWiNFO64 remote sensor reader that extracts data from HWiNFO64 and displays the data on the tool.
 
+## How do I add a plugin I downloaded?
+
+Just place the plugin into the plugins folder!
+
 ## How does it look?
 
 Like this!
