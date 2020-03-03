@@ -54,7 +54,7 @@
 
       <!-- Plugin Content -->
       <div class="container collapse show" id="{{ loaded_plugin.html_id() }}">
-        {{ loaded_plugin.render_template() }}
+        {% include loaded_plugin.render_template() %}
       </div>
 
     </div>

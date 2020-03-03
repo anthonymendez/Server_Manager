@@ -1,11 +1,11 @@
 import os
-from flask import Markup
+from flask import render_template
 from plugins.plugin_adapter import Plugin_Adapter
 
 class Plugin(Plugin_Adapter):
   
   def __init__(self, name, location):
-    self.default = "PLUGIN_DEBUG_plugin_namePLE"
+    self.default = "PLUGIN_DEBUG_EXAMPLE"
     self.default_template = "plugin_template.html"
     super().__init__(name, location)
 
@@ -28,8 +28,7 @@ class Plugin(Plugin_Adapter):
     return super().read_config(self.default, 'version')
 
   def render_template(self):
-    f = open(self.get_location() + "\\" + self.default_template, "r")
-    return Markup(f.read())
+    return self.default_template
 
 def start(name, location):
   return Plugin(name, location)
