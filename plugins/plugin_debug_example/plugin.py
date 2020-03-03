@@ -6,7 +6,7 @@ class Plugin(Plugin_Adapter):
   
   def __init__(self, name, location):
     self.default = "PLUGIN_DEBUG_EXAMPLE"
-    self.default_template = "plugin_template.html"
+    self.default_template = "plugin_debug_example.html"
     super().__init__(name, location)
 
   def name(self):
@@ -29,6 +29,9 @@ class Plugin(Plugin_Adapter):
 
   def render_template(self):
     return self.default_template
+
+  def folder_name(self):
+    return self.get_location()
 
 def start_plugin(name, location):
   return Plugin(name, location)

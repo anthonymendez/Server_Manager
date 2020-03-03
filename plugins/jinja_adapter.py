@@ -34,4 +34,5 @@ class Jinja_Adapter(ABC):
         self.fn_github_link = Plugin_Adapter_inst.github_link
         self.fn_version = Plugin_Adapter_inst.version
         self.fn_render_template = Plugin_Adapter_inst.render_template
+        self.fn_folder_name = Plugin_Adapter_inst.folder_name
         super().__init__()

@@ -12,6 +12,8 @@ class Plugin_Adapter(ABC):
     self.set_plugin_name(plugin_name)
     self.set_location(location)
     self.insert_plugin_htmls_into_templates(self.get_location())
+    self.insert_plugin_js_into_static(self.get_location())
+    self.insert_plugin_css_into_static(self.get_location())
 
   @classmethod
   def set_plugin_name(cls, plugin_name_):
@@ -46,6 +48,26 @@ class Plugin_Adapter(ABC):
         destination = template_location + file
         shutil.copy(file_location, destination)
 
+  @classmethod
+  def insert_plugin_js_into_static(cls, plugin_folder):
+    js_location = plugin_folder + "\\js\\"
+    static_location = "static\\js\\"
+    for file in os.listdir(js_location):
+      if ".js" in file:
+        file_location = os.path.join(js_location, file)
+        destination = static_location + file
+        shutil.copy(file_location, destination)
+
+  @classmethod
+  def insert_plugin_css_into_static(cls, plugin_folder):
+    css_location = plugin_folder + "\\css\\"
+    static_location = "static\\css\\"
+    for file in os.listdir(css_location):
+      if ".css" in file:
+        file_location = os.path.join(css_location, file)
+        destination = static_location + file
+        shutil.copy(file_location, destination)
+
   @abstractmethod
   def name(self):
     pass
@@ -72,4 +94,8 @@ class Plugin_Adapter(ABC):
 
   @abstractmethod
   def render_template(self):
+    pass
+
+  @abstractmethod
+  def folder_name(self):
     pass

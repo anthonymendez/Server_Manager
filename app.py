@@ -1,10 +1,10 @@
 # General Imports
 import importlib
 import os
-from plugins import Jinja_Adapter, Plugin_Adapter
 
 # Specific Imports
 from flask import Flask, render_template, session
+from plugins import Jinja_Adapter, Plugin_Adapter
 
 # Plugin Header
 plugin_folder = "plugins"
@@ -15,16 +15,19 @@ config_file = "config"
 def import_plugins():
     plugins = []
     possible_plugins = os.listdir(plugin_folder)
+    print("Loading Plugins:")
     for i in possible_plugins:
         location = os.path.join(plugin_folder, i)
         if not os.path.isdir(location) or not main_module + ".py" in os.listdir(location):
             continue
         pkg_location = os.path.relpath(location).replace("\\",".")
         info = importlib.import_module('.' + main_module, package=pkg_location)
-        print("Adding Plugin " + i + ", " + str(location))
+        print("\tName:\t\t" + i)
+        print("\tLocation:\t" + str(pkg_location))
         info.Plugin = info.start_plugin(i, location)
         info.Jinja = info.start_jinja(info.Plugin)
         plugins.append({"name": i, "info": info})
+    print("Plugins Loaded")
     plugin_functions_list = []
     for plugin in plugins:
         info = plugin["info"]
