@@ -41,11 +41,20 @@ def consolidate_config():
     new_config.close()
 
 def get_plugins_functions():
-    # TODO: Create list of list of functions from each plugin
     plugins = import_plugins()
+    plugin_functions = []
     for plugin in plugins:
         info = plugin["info"]
-        print(info.name())
+        function = {name: info.name}
+        functions.append(info.name)
+        functions.append(info.html_id)
+        functions.append(info.name_link)
+        functions.append(info.author)
+        functions.append(info.github_link)
+        functions.append(info.version)
+        functions.append(info.render_template)
+        plugin_functions.append(functions)
+    return plugin_functions
 
 # Setup
 consolidate_config()
@@ -64,8 +73,7 @@ def home_page():
 # Plugin Injection
 @app.context_processor
 def inject_plugins():
-    get_plugins_functions()
-    return dict(loaded_plugins=import_plugins())
+    return dict(loaded_plugins=get_plugins_functions())
 
 # Run Website w/o Debug Enabled
 def run():
