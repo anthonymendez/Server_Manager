@@ -9,7 +9,6 @@ from flask import Flask, render_template, session
 # Plugin Header
 plugin_folder = "plugins"
 main_module = "__init__"
-plugin_module = "plugin"
 config_file = "config"
 
 # Retrieves all given plugins
@@ -26,10 +25,6 @@ def import_plugins():
         info.Plugin = info.start_plugin(i, location)
         info.Jinja = info.start_jinja(info.Plugin)
         plugins.append({"name": i, "info": info})
-    return plugins
-
-def get_plugins_functions():
-    plugins = import_plugins()
     plugin_functions_list = []
     for plugin in plugins:
         info = plugin["info"]
@@ -68,7 +63,7 @@ def home_page():
 # Plugin Injection
 @app.context_processor
 def inject_plugins():
-    return dict(loaded_plugins=get_plugins_functions())
+    return dict(loaded_plugins=import_plugins())
 
 # Run Website w/o Debug Enabled
 def run():
