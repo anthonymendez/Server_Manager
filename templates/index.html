@@ -13,6 +13,9 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <!-- Custom Stylesheet -->
   <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/4a11c72b0c.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -24,21 +27,32 @@
       </h1>
       <h2 class="col">
         Tool by Anthony Mendez
+        <!-- Github Link -->
+        <a href="https://github.com/anthonymendez"><i class="fab fa-github-square"></i></a>
       </h2>
     </div>
 
     <!-- Plugins -->
     {% if config['DEBUG'] %}
     <div class="plugin">
+
+      <!-- Plugin Header -->
       <div class="row">
+        <!-- Plugin Collapse Button -->
         <a class="btn btn-primary" data-toggle="collapse" href="#pluginExample" role="button" aria-expanded="false" aria-controls="pluginExample"></a>
+        <!-- Plugin Title -->
         <h2 class="col">
           Plugin Debug Example
         </h2>
+        <!-- Plugin Author  -->
         <h3 class="col">
           Plugin by Anthony Mendez
+          <!-- Github Link -->
+          <a href="https://github.com/anthonymendez"><i class="fab fa-github-square"></i></a>
         </h3>
       </div>
+
+      <!-- Plugin Content -->
       <div class="container collapse show" id="pluginExample">
         <p>
           Plugin Debug Example Main contents!
@@ -47,6 +61,7 @@
           Shows you how your plugin could look!
         </p>
       </div>
+
     </div>
     {% endif %}
     
