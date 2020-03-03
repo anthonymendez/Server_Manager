@@ -3,5 +3,6 @@ function test() {
 }
 
 $(document).ready(function() {
-    test();
+    // test();
+    
 });
