@@ -1,1 +1,0 @@
-from .plugin import name, html_id, name_link, author, github_link, version, render_template

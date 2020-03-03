@@ -1,41 +1,35 @@
-import configparser
+import os
+from flask import Markup
+from plugins.plugin_adapter import Plugin_Adapter
 
-default = "PLUGIN_DEBUG_EXAMPLE"
-config = configparser.ConfigParser()
+class Plugin(Plugin_Adapter):
+  
+  def __init__(self, name, location):
+    self.default = "PLUGIN_DEBUG_plugin_namePLE"
+    self.default_template = "plugin_template.html"
+    super().__init__(name, location)
 
-def start():
-  config.read("config.ini")
+  def name(self):
+    return super().read_config(self.default, 'name')
 
-def name():
-  start()
-  print("Getting name!")
-  return config[default]['name']
+  def html_id(self):
+    return super().read_config(self.default, 'html id')
 
-def html_id():
-  start()
-  return config[default]['html id']
+  def name_link(self):
+    return super().read_config(self.default, 'name link')
 
-def name_link():
-  start()
-  return config[default]['name link']
+  def author(self):
+    return super().read_config(self.default, 'author')
 
-def author():
-  start()
-  return config[default]['author']
+  def github_link(self):
+    return super().read_config(self.default, 'github link')
 
-def github_link():
-  start()
-  return config[default]['github link']
+  def version(self):
+    return super().read_config(self.default, 'version')
 
-def version():
-  start()
-  return config[default]['version']
+  def render_template(self):
+    f = open(self.get_location() + "\\" + self.default_template, "r")
+    return Markup(f.read())
 
-def render_template():
-    return """
-        <p>
-          Plugin Debug Example Main contents!
-        </p>
-        <p>
-          Shows you how your plugin could look!
-        </p>"""
+def start(name, location):
+  return Plugin(name, location)

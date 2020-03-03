@@ -1,7 +1,7 @@
 # General Imports
 import importlib
 import os
-from plugin_functions import Plugin_Functions
+from plugins import Jinja_Adapter, Plugin_Adapter
 
 # Specific Imports
 from flask import Flask, render_template, session
@@ -22,9 +22,27 @@ def import_plugins():
             continue
         pkg_location = os.path.relpath(location).replace("\\",".")
         info = importlib.import_module('.' + main_module, package=pkg_location)
-        print("Adding Plugin " + i)
+        print("Adding Plugin " + i + ", " + str(location))
+        info.Plugin = info.start(i, location)
         plugins.append({"name": i, "info": info})
     return plugins
+
+def get_plugins_functions():
+    plugins = import_plugins()
+    plugin_functions_list = []
+    for plugin in plugins:
+        info = plugin["info"]
+        jinja_adapter = Jinja_Adapter(
+            info.Plugin.name,
+            info.Plugin.html_id,
+            info.Plugin.name_link,
+            info.Plugin.author,
+            info.Plugin.github_link,
+            info.Plugin.version,
+            info.Plugin.render_template
+        )
+        plugin_functions_list.append(jinja_adapter)
+    return plugin_functions_list
 
 def consolidate_config():
     new_config = open(config_file+".ini", "w")
@@ -40,23 +58,6 @@ def consolidate_config():
         new_config.write(curr_config.read())
         new_config.write("\n\n")
     new_config.close()
-
-def get_plugins_functions():
-    plugins = import_plugins()
-    plugin_functions_list = []
-    for plugin in plugins:
-        info = plugin["info"]
-        plugin_function = Plugin_Functions(
-            info.name(),
-            info.html_id(),
-            info.name_link(),
-            info.author(),
-            info.github_link(),
-            info.version(),
-            info.render_template()
-        )
-        plugin_functions_list.append(plugin_function)
-    return plugin_functions_list
 
 # Setup
 consolidate_config()

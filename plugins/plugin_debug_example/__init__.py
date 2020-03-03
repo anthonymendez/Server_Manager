@@ -1,1 +1,1 @@
-from .plugin import name, html_id, name_link, author, github_link, version, render_template
+from .plugin import Plugin, start

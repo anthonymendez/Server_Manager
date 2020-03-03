@@ -32,61 +32,29 @@
       </h2>
     </div>
 
-    <!-- Plugins -->
-    {% if config['DEBUG'] %}
-    <div class="plugin">
-
-      <!-- Plugin Header -->
-      <div class="row">
-        <!-- Plugin Collapse Button -->
-        <a class="btn btn-primary" data-toggle="collapse" href="#pluginExample" role="button" aria-expanded="false" aria-controls="pluginExample"></a>
-        <!-- Plugin Title -->
-        <h2 class="col">
-          Plugin Debug Example
-        </h2>
-        <!-- Plugin Author  -->
-        <h3 class="col">
-          Plugin by Anthony Mendez
-          <!-- Github Link -->
-          <a href="https://github.com/anthonymendez"><i class="fab fa-github-square"></i></a>
-        </h3>
-      </div>
-
-      <!-- Plugin Content -->
-      <div class="container collapse show" id="pluginExample">
-        <p>
-          Plugin Debug Example Main contents!
-        </p>
-        <p>
-          Shows you how your plugin could look!
-        </p>
-      </div>
-
-    </div>
-    {% endif %}
-    
+    <!-- Plugins -->    
     {% for loaded_plugin in loaded_plugins %}
     <div class="plugin">
 
       <!-- Plugin Header -->
       <div class="row">
         <!-- Plugin Collapse Button -->
-        <a class="btn btn-primary" data-toggle="collapse" href="#{{ loaded_plugin.html_id}}" role="button" aria-expanded="false" aria-controls="{{ loaded_plugin.html_id }}"></a>
+        <a class="btn btn-primary" data-toggle="collapse" href="#{{ loaded_plugin.html_id() }}" role="button" aria-expanded="false" aria-controls="{{ loaded_plugin.html_id() }}"></a>
         <!-- Plugin Title -->
         <h2 class="col">
-          {{ loaded_plugin.name }}
+          {{ loaded_plugin.name() }}
         </h2>
         <!-- Plugin Author  -->
         <h3 class="col">
-          {{ loaded_plugin.author }}
+          {{ loaded_plugin.author() }}
           <!-- Github Link -->
-          <a href="{{ loaded_plugin.github_link }}"><i class="fab fa-github-square"></i></a>
+          <a href="{{ loaded_plugin.github_link() }}"><i class="fab fa-github-square"></i></a>
         </h3>
       </div>
 
       <!-- Plugin Content -->
-      <div class="container collapse show" id="{{ loaded_plugin.html_id }}">
-        {{ loaded_plugin.render_template }}
+      <div class="container collapse show" id="{{ loaded_plugin.html_id() }}">
+        {{ loaded_plugin.render_template() }}
       </div>
 
     </div>
