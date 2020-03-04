@@ -90,5 +90,4 @@ def debug():
     app.config['TEMPLATES_AUTO_RELOAD'] = True
     app.config['DEBUG'] = True
     app.config['ENV'] = "development"
-    context = ('cert_4096.pem', 'key_4096.key')
-    app.run(host=host_ip, port=host_port, ssl_context=context)
+    app.run(host=host_ip, port=host_port)
