@@ -40,11 +40,11 @@ class Plugin_Adapter(ABC):
 
   @classmethod
   def insert_plugin_htmls_into_templates(cls, plugin_folder):
-    plugin_location = plugin_folder
+    plugin_location = plugin_folder + "\\html\\"
     template_location = "templates/"
     for file in os.listdir(plugin_location):
       if ".html" in file:
-        file_location = os.path.join(plugin_folder, file)
+        file_location = os.path.join(plugin_location, file)
         destination = template_location + file
         shutil.copy(file_location, destination)
 
