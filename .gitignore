@@ -42,3 +42,4 @@ config.ini
 
 # Template, ignore files that aren't index.html
 !templates/index.html
+templates/*.html
