@@ -31,3 +31,7 @@ htmlcov/
 .coverage
 .coverage.*
 *,cover
+
+# SSL
+*.pem
+*.key
