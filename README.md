@@ -32,6 +32,10 @@ I'm currently working on a HWiNFO64 remote sensor reader that extracts data from
 
 Just place the plugin into the plugins folder!
 
+## Are the SSL Keys necessary?
+
+No, but if you're going to be hosting the site and want to access it anywhere, you can use it to ensure you're connected to the correct server.
+
 ## How does it look?
 
 Like this!

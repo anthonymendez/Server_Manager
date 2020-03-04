@@ -1,0 +1,1 @@
+winpty openssl req -x509 -newkey rsa:4096 -keyout key_4096.key -out cert_4096.pem -days 365 -nodes

@@ -82,11 +82,13 @@ def run():
     app.config['TEMPLATES_AUTO_RELOAD'] = False
     app.config['DEBUG'] = False
     app.config['ENV'] = "production"
-    app.run(host=host_ip, port=host_port)
+    context = ('cert_4096.pem', 'key_4096.key')
+    app.run(host=host_ip, port=host_port, ssl_context=context)
 
 # Run Website w/ Debug Enabled
 def debug():
     app.config['TEMPLATES_AUTO_RELOAD'] = True
     app.config['DEBUG'] = True
     app.config['ENV'] = "development"
-    app.run(host=host_ip, port=host_port)
+    context = ('cert_4096.pem', 'key_4096.key')
+    app.run(host=host_ip, port=host_port, ssl_context=context)
