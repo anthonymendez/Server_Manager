@@ -1,0 +1,30 @@
+<h3>
+    CPU Count
+</h3>
+<p>
+    {{ loaded_plugin.cpu_count() }}
+</p>
+<h3>
+    CPU Usage
+</h3>
+<p>
+    {{ loaded_plugin.cpu_percent_list() }}
+</p>
+<h3>
+    CPU Stats
+</h3>
+<p>
+    {{ loaded_plugin.cpu_stats() }}
+</p>
+<h3>
+    Memory Total
+</h3>
+<p>
+    {{ loaded_plugin.mem_total()/1024/1024/1024 }} Gigabytes
+</p>
+<h3>
+    Memory Left
+</h3>
+<p>
+    {{ loaded_plugin.mem_left()/1024/1024/1024 }} Gigabytes
+</p>
