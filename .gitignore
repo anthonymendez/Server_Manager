@@ -37,8 +37,8 @@ htmlcov/
 *.key
 
 # Ignore config.ini
-config.ini
-!*/config.ini
+# plugins/*/config.ini
+# !*/config.ini
 
 # Template, ignore files that aren't index.html
 !templates/index.html
