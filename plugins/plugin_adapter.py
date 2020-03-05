@@ -69,6 +69,10 @@ class Plugin_Adapter(ABC):
         shutil.copy(file_location, destination)
 
   @abstractmethod
+  def plugin_route(self, app, request):
+    pass
+
+  @abstractmethod
   def name(self):
     pass
 

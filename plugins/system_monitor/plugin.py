@@ -9,6 +9,10 @@ class Plugin(Plugin_Adapter):
     self.default_template = "system_monitor.html"
     super().__init__(name, location)
 
+  def plugin_route(self, app, request):
+    app.logger.info("Received HTTP %s for %s.", request.method, self.get_plugin_name())
+    return self.get_plugin_name() + " " + request.method
+
   def name(self):
     return super().read_config(self.default, 'name')
 

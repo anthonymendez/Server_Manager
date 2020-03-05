@@ -98,15 +98,18 @@ def home_page():
 def plugin_route(plugin):
     # Get first path to ensure it's a loaded plugin first
     plugin_solo = plugin.split("/")[0]
-    if any(p['name'] == plugin_solo for p in plugin_list):
-        app.logger.info("Perform HTTP %s for %s.", request.method, plugin_solo)
-        app.logger.info("Complete path: %s.", request.path)
-        return home_page()
-    else:
-        app.logger.error("Not a plugin!")
-        app.logger.error("Perform HTTP %s for %s.", request.method, plugin_solo)
-        app.logger.error("Complete path: %s.", request.path)
-        return home_page()
+    # Check if plugin exists in list
+    for p in plugin_list:
+        if (p['name'] == plugin_solo):
+            app.logger.info("Perform HTTP %s for %s.", request.method, plugin_solo)
+            app.logger.info("Complete path: %s.", request.path)
+            return p['info'].Plugin.plugin_route(app, request)
+
+    # Invalid plugin path
+    app.logger.error("Not a plugin!")
+    app.logger.error("Perform HTTP %s for %s.", request.method, plugin_solo)
+    app.logger.error("Complete path: %s.", request.path)
+    return home_page()
 
 # Plugin Injection
 @app.context_processor
