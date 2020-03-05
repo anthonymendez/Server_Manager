@@ -94,12 +94,18 @@ def home_page():
     return render_template('index.html')
 
 # Plugin Pages
-@app.route("/<plugin>")
+@app.route("/<path:plugin>/")
 def plugin_route(plugin):
-    if any(p['name'] == plugin for p in plugin_list):
-        app.logger.info("Perform HTTP %s for %s", request.method, plugin)
+    # Get first path to ensure it's a loaded plugin first
+    plugin_solo = plugin.split("/")[0]
+    if any(p['name'] == plugin_solo for p in plugin_list):
+        app.logger.info("Perform HTTP %s for %s.", request.method, plugin_solo)
+        app.logger.info("Complete path: %s.", request.path)
         return home_page()
     else:
+        app.logger.error("Not a plugin!")
+        app.logger.error("Perform HTTP %s for %s.", request.method, plugin_solo)
+        app.logger.error("Complete path: %s.", request.path)
         return home_page()
 
 # Plugin Injection
