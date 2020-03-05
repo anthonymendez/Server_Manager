@@ -38,6 +38,8 @@ No, but if you're going to be hosting the site and want to access it anywhere, y
 
 ## How does it look?
 
+You can see a preview at <http://www.anthonymendez.duckdns.org/>
+
 Like this!
 
 ![alt text](README_imgs/website.PNG "Site!")
