@@ -1,6 +1,7 @@
 import os
 from flask import render_template
 from plugins.plugin_adapter import Plugin_Adapter
+from random import random
 
 class Plugin(Plugin_Adapter):
   
@@ -11,6 +12,10 @@ class Plugin(Plugin_Adapter):
 
   def plugin_route(self, app, request):
     app.logger.info("Received HTTP %s for %s.", request.method, self.get_plugin_name())
+    subpath_list = request.path.split("/")
+    app.logger.info(subpath_list)
+    if (len(subpath_list) == 4 and subpath_list[1] == self.get_plugin_name() and subpath_list[2] == "get_test"):
+      return str(random())
     return self.get_plugin_name() + " " + request.method
 
   def name(self):

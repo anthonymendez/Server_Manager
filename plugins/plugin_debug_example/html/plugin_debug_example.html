@@ -20,7 +20,6 @@
     Ok what about custom Javascript in my plugin?
 </p>
 <code id="custom_js">
-    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <script src="{{url_for('static', filename='js/plugin_debug_example.js')}}"></script>
 </code>
 <p>
@@ -30,5 +29,16 @@
     <link rel="stylesheet" href="{{url_for('static', filename='css/plugin_debug_example.css')}}">
     <p>
         You betcha chief!
+    </p>
+</div>
+<div>
+    <p>
+        Ok, ok. Fine. It looks pretty good. What if I wanted to continuously update my plugin subpage from a Python function using a URL path specific to this plugin? Betcha didn't think about that case bucko.
+    </p>
+    <code>
+        WRONG! Behold, as this number below is being created by a Python function retrieved and updated using Javascript!
+    </code>
+    <p id="get_test">
+        If you're seeing this... then it failed :(
     </p>
 </div>
