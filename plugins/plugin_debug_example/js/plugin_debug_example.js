@@ -5,7 +5,6 @@ function custom_js() {
 // Performs GET request from server.
 function get_test() {
     var plugin_name = "plugin_debug_example"
-    console.log("Performing get_test!");
     var URL = plugin_name + "/get_test"
     $.get(URL)
     .done(function(data) {
@@ -14,7 +13,6 @@ function get_test() {
     .fail(function(data) {
         $("#get_test").text("Yeah that failed chief.");
     });
-    console.log("Finished get_test!");
 }
 
 $(document).ready(function() {

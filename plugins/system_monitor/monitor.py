@@ -1,5 +1,17 @@
 import psutil
 
+# Overall System Info List
+
+def system_info():
+    return {
+        "cpu_count": cpu_count(),
+        "cpu_percent_list": cpu_percent_list(),
+        "cpu_stats": cpu_stats(),
+        "mem_total": mem_total(),
+        "mem_left": mem_left(),
+        "disk_partition_list": disk_partition_list()
+    }
+
 # CPU Functions
 
 def cpu_count():
