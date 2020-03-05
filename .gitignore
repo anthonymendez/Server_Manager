@@ -43,3 +43,11 @@ config.ini
 # Template, ignore files that aren't index.html
 !templates/index.html
 templates/*.html
+
+# CSS, ignore files that aren't index.css
+!static/css/index.css
+static/css/*.css
+
+# JS, ignore files that aren't index.js
+!static/js/index.js
+static/js/*.js
