@@ -51,7 +51,9 @@ def import_plugins():
         location = os.path.join(plugin_folder, i)
         if not os.path.isdir(location) or not main_module + ".py" in os.listdir(location):
             continue
-        pkg_location = os.path.relpath(location).replace("\\",".")
+        # First replace is for Windows file systems
+        # Second replace is for Unix file systems
+        pkg_location = os.path.relpath(location).replace("\\",".").replace("/", ".")
         info = importlib.import_module('.' + main_module, package=pkg_location)
         app.logger.info("\tName:\t\t" + i)
         app.logger.info("\tLocation:\t" + str(pkg_location))
@@ -74,7 +76,7 @@ def consolidate_config():
         location = os.path.join(plugin_folder, i)
         if not os.path.isdir(location) or not plugin_config_file + ".ini" in os.listdir(location):
             continue
-        curr_config = open(location + "\\" +plugin_config_file + ".ini", "r")
+        curr_config = open(os.path.join(location, plugin_config_file + ".ini"), "r")
         new_config.write(curr_config.read())
         new_config.write("\n\n")
     new_config.close()
