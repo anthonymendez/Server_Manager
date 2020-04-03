@@ -20,6 +20,8 @@ function get_system_info() {
         var mem_left = result["mem_left"]/1024/1024/1024;
         $("#cpu_percent").empty();
         $("#cpu_percent").append(cpu_percent_str);
+        $("#cpu_stats").empty();
+        $("#cpu_stats").append(cpu_stats);
         $("#mem_total").text(mem_total.toFixed(4) + " Gigabytes");
         $("#mem_left").text(mem_left.toFixed(4) + " Gigabytes");
     })

@@ -1,20 +1,22 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js" integrity="sha256-8zyeSXm+yTvzUN1VgAOinFgaVFEFTyYzWShOy9w7WoQ=" crossorigin="anonymous"></script>
+<script src="{{url_for('static', filename='js/system_monitor_chart.js')}}"></script>
 <script src="{{url_for('static', filename='js/system_monitor.js')}}"></script>
 <h3>
     CPU Count
 </h3>
 <p id="cpu_count">
-    {{ loaded_plugin.cpu_count() }}
 </p>
 <h3>
     CPU Usage
 </h3>
-<div class="row" id="cpu_percent">
+<div class="row" id="cpu_usage">
 </div>
+<canvas class="row" id="cpu_usage_chart">
+</canvas>
 <h3>
     CPU Stats
 </h3>
 <p id="cpu_stats">
-    {{ loaded_plugin.cpu_stats() }}
 </p>
 <div>
     <h3>
