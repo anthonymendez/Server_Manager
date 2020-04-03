@@ -32,10 +32,36 @@
     </div>
     <div class="row">
         <p class="col" id="mem_total">
-            {{ loaded_plugin.mem_total()/1024/1024/1024 }} Gigabytes
         </p>
         <p class="col" id="mem_left">
-            {{ loaded_plugin.mem_left()/1024/1024/1024 }} Gigabytes
         </p>
+    </div>
+</div>
+<h1>Redesign Marker</h1>
+<div>
+    <h3>
+        CPU
+    </h3>
+    <div class="row">
+        <h4 class="col">
+            Physical
+        </h4>
+        <h4 class="col">
+            Threads
+        </h4>
+        <h4 class="col">
+            Overall Usage
+        </h4>
+    </div>
+    <div class = "row">
+        <h5 class="col" id="cpu_physical_count">
+            -1
+        </h5>
+        <h5 class="col" id="cpu_thread_count">
+            -1
+        </h5>
+        <h5 class="col" id="cpu_percent_overall">
+            -1
+        </h5>
     </div>
 </div>

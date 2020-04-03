@@ -1,7 +1,7 @@
 import os
 from flask import render_template
 from plugins.plugin_adapter import Plugin_Adapter
-from .monitor import system_info
+from .monitor import get_static_system_info, get_dynamic_system_info
 import json
 
 class Plugin(Plugin_Adapter):
@@ -15,8 +15,12 @@ class Plugin(Plugin_Adapter):
     app.logger.info("Received HTTP %s for %s.", request.method, self.get_plugin_name())
     subpath_list = request.path.split("/")
     app.logger.info(subpath_list)
-    if (len(subpath_list) == 4 and subpath_list[1] == self.get_plugin_name() and subpath_list[2] == "system_info"):
-      return json.dumps(system_info())
+    if (len(subpath_list) == 5 and subpath_list[1] == self.get_plugin_name() and subpath_list[2] == "system_info" and subpath_list[3] == "dynamic"):
+      info = get_dynamic_system_info()
+      return json.dumps(info)
+    elif (len(subpath_list) == 5 and subpath_list[1] == self.get_plugin_name() and subpath_list[2] == "system_info" and subpath_list[3] == "static"):
+      info = get_static_system_info()
+      return json.dumps(info)
     return self.get_plugin_name() + " " + request.method
 
   def name(self):
