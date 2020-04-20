@@ -36,14 +36,15 @@ app_config_file = "app"
 config = configparser.ConfigParser()
 config_file = "app.ini"
 config.read(config_file)
-host_ip = config["APP"]["ip"]
-host_port = config["APP"]["port"]
+host_ip = config["APP"]["prod_ip"]
+host_port = config["APP"]["prod_port"]
 
 # Plugins
 plugin_list = []
 plugin_functions_list = []
 
 # Retrieves all given plugins
+# TODO: Move away from app.py into its own py file
 def import_plugins():
     possible_plugins = os.listdir(plugin_folder)
     app.logger.info("Loading Plugins:")
@@ -66,6 +67,7 @@ def import_plugins():
         plugin_functions_list.append(info.Jinja)
 
 # Move all configuration files to a single file
+# TODO: Move away from app.py into its own py file
 def consolidate_config():
     new_config = open(plugin_config_file+".ini", "w")
     new_config.truncate(0)
@@ -133,4 +135,6 @@ def debug():
     app.config['DEBUG'] = True
     app.config['ENV'] = "development"
     import_plugins()
+    host_ip = config["APP"]["debug_ip"]
+    host_port = config["APP"]["debug_port"]
     app.run(host=host_ip, port=host_port)
