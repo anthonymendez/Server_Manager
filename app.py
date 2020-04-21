@@ -36,8 +36,8 @@ app_config_file = "app"
 config = configparser.ConfigParser()
 config_file = "app.ini"
 config.read(config_file)
-host_ip = config["APP"]["prod_ip"]
-host_port = config["APP"]["prod_port"]
+host_ip = config["APP"]["ip"]
+host_port = config["APP"]["port"]
 
 # Plugins
 plugin_list = []
@@ -120,21 +120,7 @@ def plugin_route(plugin):
 def inject_plugins():
     return dict(loaded_plugins=plugin_functions_list)
 
-# Run Website w/o Debug Enabled
-def run():
-    app.config['TEMPLATES_AUTO_RELOAD'] = False
-    app.config['DEBUG'] = False
-    app.config['ENV'] = "production"
-    import_plugins()
-    context = ('cert_4096.pem', 'key_4096.key')
-    app.run(host=host_ip, port=host_port, ssl_context=context)
+import_plugins()
 
-# Run Website w/ Debug Enabled
-def debug():
-    app.config['TEMPLATES_AUTO_RELOAD'] = True
-    app.config['DEBUG'] = True
-    app.config['ENV'] = "development"
-    import_plugins()
-    host_ip = config["APP"]["debug_ip"]
-    host_port = config["APP"]["debug_port"]
-    app.run(host=host_ip, port=host_port)
+if __name__ == "__main__":
+    app.run(debug=True, host=host_ip, port=host_port)
